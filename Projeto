@@ -1,0 +1,51 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  # Define your variables here
+  IONIC_VERSION: '6' # Adjust based on your Ionic version
+
+jobs:
+- job: Build
+  displayName: 'Build Job'
+  steps:
+  - script: |
+      echo Installing Node.js
+      curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+      sudo bash nodesource_setup.sh
+      sudo apt-get install -y nodejs
+    displayName: 'Install Node.js'
+
+  - script: |
+      echo Installing Ionic CLI
+      npm install -g @ionic/cli@${{ variables.IONIC_VERSION }}
+    displayName: 'Install Ionic CLI'
+
+  - script: |
+      echo Building Ionic App
+      cd $(Build.SourcesDirectory)
+      npm install
+      ionic build --prod
+    displayName: 'Build Ionic App'
+
+- job: Test
+  displayName: 'Test Job'
+  dependsOn: Build
+  steps:
+  - script: |
+      echo Running Tests
+      cd $(Build.SourcesDirectory)
+      npm test -- --watchAll=false
+    displayName: 'Run Tests'
+
+- job: Deploy
+  displayName: 'Deploy Job'
+  dependsOn: Test
+  steps:
+  - script: |
+      echo 'Deployment step (not applicable for mocked backend)'
+      # Add commands for deployment if needed
+    displayName: 'Mock Deployment Step'
