@@ -5,47 +5,48 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  # Define your variables here
-  IONIC_VERSION: '6' # Adjust based on your Ionic version
+  NODE_VERSION: '14.x'  # Versão do Node.js
+  IONIC_VERSION: '6'     # Versão do Ionic
+  BUILD_DIR: 'www'       # Diretório de saída da build do Ionic
 
 jobs:
 - job: Build
   displayName: 'Build Job'
   steps:
   - script: |
-      echo Installing Node.js
-      curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+      echo "Instalando Node.js..."
+      curl -sL https://deb.nodesource.com/setup_$NODE_VERSION -o nodesource_setup.sh
       sudo bash nodesource_setup.sh
       sudo apt-get install -y nodejs
-    displayName: 'Install Node.js'
+    displayName: 'Instalar Node.js'
 
   - script: |
-      echo Installing Ionic CLI
+      echo "Instalando o Ionic CLI..."
       npm install -g @ionic/cli@${{ variables.IONIC_VERSION }}
-    displayName: 'Install Ionic CLI'
+    displayName: 'Instalar Ionic CLI'
 
   - script: |
-      echo Building Ionic App
+      echo "Construindo a aplicação Ionic..."
       cd $(Build.SourcesDirectory)
       npm install
       ionic build --prod
-    displayName: 'Build Ionic App'
+    displayName: 'Construir Aplicação Ionic'
 
 - job: Test
   displayName: 'Test Job'
   dependsOn: Build
   steps:
   - script: |
-      echo Running Tests
+      echo "Executando testes..."
       cd $(Build.SourcesDirectory)
       npm test -- --watchAll=false
-    displayName: 'Run Tests'
+    displayName: 'Executar Testes'
 
 - job: Deploy
   displayName: 'Deploy Job'
   dependsOn: Test
   steps:
   - script: |
-      echo 'Deployment step (not applicable for mocked backend)'
-      # Add commands for deployment if needed
-    displayName: 'Mock Deployment Step'
+      echo "Etapa de implantação (não aplicável para backend simulado)"
+      # Se desejar, você pode adicionar comandos para implantar em um serviço de hospedagem
+    displayName: 'Etapa de Implantação Simulada'
