@@ -1,0 +1,32 @@
+# Arquivo YAML para o build do frontend Ionic
+trigger:
+  - master  # Gatilho para quando houver push na branch master
+
+pool:
+  vmImage: 'ubuntu-latest'  # Usando uma máquina virtual com Ubuntu
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '16.x'  # Escolhe a versão do Node.js
+    displayName: 'Instalar Node.js'
+
+  - script: |
+      npm install -g @ionic/cli
+    displayName: 'Instalar CLI do Ionic'
+
+  - script: |
+      npm install
+    displayName: 'Instalar Dependências'
+
+  - script: |
+      ionic build --prod
+    displayName: 'Build do Frontend Ionic'
+
+  - task: PublishPipelineArtifact@1  # Publicar artefatos do build
+    inputs:
+      targetPath: 'www'  # Caminho da pasta de saída do build Ionic
+      artifact: 'drop'
+    displayName: 'Publicar Artefato'
+
+# Este arquivo pode ser expandido conforme o progresso do seu projeto
