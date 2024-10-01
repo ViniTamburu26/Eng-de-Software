@@ -1,7 +1,7 @@
 trigger: none  # Não queremos que o pipeline rode automaticamente com base em algum repositório
 
 pool:
-  name: 'MySelfHostedPool'
+  name: 'Pool-Self'
 
 steps:
   - script: echo "Iniciando pipeline de demonstração"
