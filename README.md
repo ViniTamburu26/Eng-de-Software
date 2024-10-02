@@ -1,6 +1,6 @@
 #Projeto "CleanUp" - Pipeline
 ##Visão Geral
-Este projeto implementa um pipeline CI/CD completo para um sistema baseado em Vue.js (frontend) e um backend mockado, utilizando práticas de Continuous Integration (CI) e Continuous Delivery (CD). O pipeline automatiza todo o processo de construção, testes e deploy para ambientes de staging e produção.
+Este projeto implementa um pipeline CI/CD completo para um sistema baseado em Vue.js (frontend) e um backend mockado. O pipeline automatiza todo o processo de construção, testes e deploy para ambientes de staging e produção.
 
 O objetivo deste pipeline é garantir que o código seja continuamente validado e entregue de forma eficiente e segura, sem a necessidade de intervenção manual.
 
