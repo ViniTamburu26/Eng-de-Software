@@ -1,14 +1,50 @@
-trigger: none  # Não queremos que o pipeline rode automaticamente com base em algum repositório
+trigger:
+- none # Sem integração com Git, o pipeline pode ser iniciado manualmente
 
 pool:
-  name: 'Pool-Self'
+  vmImage: 'ubuntu-latest'
 
-steps:
-  - script: echo "Iniciando pipeline de demonstração"
-    displayName: "Exibir mensagem de início"
+stages:
+- stage: Build
+  displayName: 'Build Stage'
+  jobs:
+  - job: BuildFrontend
+    displayName: 'Build Frontend (Vue.js)'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '14.x'
+      displayName: 'Instalar Node.js'
 
-  - script: echo "Executando a segunda etapa do pipeline"
-    displayName: "Segunda etapa"
+    - script: |
+        npm install
+      displayName: 'Instalar dependências Vue.js'
 
-  - script: echo "Pipeline completo!"
-    displayName: "Finalizar pipeline"
+    - script: |
+        npm run build
+      displayName: 'Build do App Vue.js'
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'dist'  # Diretório onde o Vue.js gera os arquivos de build
+        artifact: 'drop'
+      displayName: 'Publicar artefato de build'
+
+- stage: Deploy
+  displayName: 'Deploy Stage'
+  dependsOn: Build
+  jobs:
+  - job: DeployFrontend
+    displayName: 'Deploy Frontend para servidor mock'
+    steps:
+    - task: CopyFiles@2
+      inputs:
+        contents: '**'
+        targetFolder: '/var/www/html' # Caminho do servidor simulado
+      displayName: 'Copiar arquivos para mock server'
+      
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '/var/www/html'
+        artifact: 'deploy'
+      displayName: 'Publicar artefato de deploy'
