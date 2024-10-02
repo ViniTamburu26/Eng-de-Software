@@ -1,4 +1,4 @@
-trigger: none  # Não queremos que o pipeline rode automaticamente com base em algum repositório
+trigger: none  
 
 pool:
   name: 'Pool-Self'  # Utilizando um agente self-hosted
