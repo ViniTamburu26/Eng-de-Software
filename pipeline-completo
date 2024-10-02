@@ -1,0 +1,129 @@
+trigger:
+- main  # O pipeline será acionado automaticamente quando houver commits na branch "main"
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+# Estágio 1: Construção e Testes do Frontend Vue.js
+- stage: BuildAndTestFrontend
+  displayName: 'Construir e Testar Frontend (Vue.js)'
+  jobs:
+  - job: Build
+    displayName: 'Construir Frontend'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '14.x'
+      displayName: 'Instalar Node.js'
+
+    - script: |
+        echo "Instalando dependências"
+        npm install
+      displayName: 'Instalar dependências Vue.js'
+
+    - script: |
+        echo "Construindo o projeto Vue.js"
+        npm run build
+      displayName: 'Construir o projeto Vue.js'
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'dist'  # Diretório de saída do build
+        artifact: 'frontend-build'
+      displayName: 'Publicar artefato de construção'
+
+  - job: TestFrontend
+    displayName: 'Testar Frontend'
+    dependsOn: Build
+    steps:
+    - script: |
+        echo "Executando testes unitários no frontend"
+        npm run test:unit
+      displayName: 'Testar Vue.js'
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: '**/test-results.xml'
+        testRunTitle: 'Frontend Unit Tests'
+      displayName: 'Publicar resultados dos testes'
+
+# Estágio 2: Backend Mockado e Integração
+- stage: BackendMockAndIntegration
+  displayName: 'Configurar e Validar Backend Mockado'
+  dependsOn: BuildAndTestFrontend
+  jobs:
+  - job: MockBackend
+    displayName: 'Configurar Backend Mockado'
+    steps:
+    - script: |
+        echo "Iniciando o backend mockado"
+        npm run mock-backend  # Exemplo de um comando para iniciar o backend mockado
+      displayName: 'Iniciar backend mockado'
+
+    - script: |
+        echo "Validando a integração entre o frontend e o backend"
+      displayName: 'Validação de Integração'
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'backend'
+        artifact: 'backend-mock'
+      displayName: 'Publicar artefato do backend mockado'
+
+# Estágio 3: Testes de Integração
+- stage: IntegrationTests
+  displayName: 'Testar Integração Frontend/Backend'
+  dependsOn: BackendMockAndIntegration
+  jobs:
+  - job: RunIntegrationTests
+    displayName: 'Rodar Testes de Integração'
+    steps:
+    - script: |
+        echo "Executando testes de integração"
+        npm run test:integration  # Testes automatizados de integração
+      displayName: 'Executar testes de integração'
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: '**/integration-test-results.xml'
+        testRunTitle: 'Integration Tests'
+      displayName: 'Publicar resultados dos testes de integração'
+
+# Estágio 4: Deploy para ambiente de staging
+- stage: DeployToStaging
+  displayName: 'Deploy para Staging'
+  dependsOn: IntegrationTests
+  jobs:
+  - deployment: DeployToStagingEnv
+    displayName: 'Deploy para ambiente de Staging'
+    environment: 'staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: 'frontend-build'
+          - script: |
+              echo "Iniciando deploy do frontend no ambiente de staging"
+              cp -r dist /var/www/html/staging  # Exemplo de deploy
+            displayName: 'Deploy do frontend para Staging'
+
+# Estágio 5: Deploy para Produção
+- stage: DeployToProduction
+  displayName: 'Deploy para Produção'
+  dependsOn: DeployToStaging
+  jobs:
+  - deployment: DeployToProductionEnv
+    displayName: 'Deploy para ambiente de Produção'
+    environment: 'production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: 'frontend-build'
+          - script: |
+              echo "Iniciando deploy do frontend no ambiente de produção"
+              cp -r dist /var/www/html/prod  # Exemplo de deploy
+            displayName: 'Deploy do frontend para Produção'
