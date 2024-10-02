@@ -10,23 +10,30 @@ stages:
   - job: RepresentSteps
     displayName: 'Simulação das Etapas do Pipeline'
     steps:
-    - script: echo "Iniciando simulação do pipeline para o aplicativo 'Uber de Diaristas'"
+    - script: |
+        echo "Iniciando simulação do pipeline para o aplicativo 'Uber de Diaristas'"
       displayName: 'Início da Simulação'
 
-    - script: echo "Passo 1: Gestão de prestadores de serviço"
+    - script: |
+        echo "Passo 1: Gestão de prestadores de serviço"
       displayName: 'Gestão de prestadores de serviço'
 
-    - script: echo "Passo 2: Gestão de solicitações"
+    - script: |
+        echo "Passo 2: Gestão de solicitações"
       displayName: 'Gestão de solicitações'
 
-    - script: echo "Passo 3: Avaliação de serviços"
+    - script: |
+        echo "Passo 3: Avaliação de serviços"
       displayName: 'Avaliação de serviços'
 
-    - script: echo "Passo 4: Pagamentos"
+    - script: |
+        echo "Passo 4: Pagamentos"
       displayName: 'Pagamentos'
 
-    - script: echo "Passo 5: Conexão com banco de dados (simulada)"
+    - script: |
+        echo "Passo 5: Conexão com banco de dados (simulada)"
       displayName: 'Conexão com banco de dados'
 
-    - script: echo "Finalizando simulação do pipeline"
+    - script: |
+        echo "Finalizando simulação do pipeline"
       displayName: 'Finalização'
