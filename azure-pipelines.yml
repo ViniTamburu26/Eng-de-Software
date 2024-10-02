@@ -1,19 +1,16 @@
 trigger:
-- none # Pipeline manual, sem Git
-
-pool:
-  vmImage: 'ubuntu-latest' # Definir a pool para evitar erros de formato
+- none # Sem trigger automático, será manual
 
 stages:
 - stage: Representation
   displayName: 'Representação do Pipeline DevOps'
   jobs:
   - job: RepresentSteps
-    displayName: 'Representação das Etapas do Pipeline'
+    displayName: 'Simulação das Etapas do Pipeline'
     steps:
     - script: |
         echo "Iniciando simulação do pipeline para o aplicativo 'Uber de Diaristas'"
-      displayName: 'Início da Representação'
+      displayName: 'Início da Simulação'
 
     - script: |
         echo "Passo 1: Gestão de prestadores de serviço"
