@@ -1,11 +1,11 @@
 <template>
     <TodoHeader/>
-    <HelloWorld/>
+    <ImageService/>
     <SolicitarForm />
 </template>
 
 <script>
-import HelloWorld from '@/components/TodoQuadrados.vue';
+import ImageService from '@/components/TodoQuadrados.vue';
 import TodoHeader from '@/components/TodoHeader.vue';
 import SolicitarForm from '@/components/TodoSolicitar.vue';
 
@@ -13,7 +13,7 @@ export default {
   name: 'HomeView',
   components: {
     TodoHeader,
-    HelloWorld,
+    ImageService,
     SolicitarForm
   }
 }

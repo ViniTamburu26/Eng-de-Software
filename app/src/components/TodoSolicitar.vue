@@ -1,41 +1,74 @@
 <template>
-    <router-link to="/servico" class="containerInfo">
-      <h2>Solicitar</h2>
-      <p>Encontre profissionais perto de você</p>
-    </router-link>
-
+  <router-link to="/servico" class="containerInfo">
+    <h2>Solicitar</h2>
+    <p>Encontre profissionais perto de você</p>
+  </router-link>
 </template>
 
 <script>
-    export default{
-        
-    }
+export default {
+
+}
 </script>
 
 <style>
 
 .containerInfo {
-  display: flex; /* Ativa o Flexbox */
-  flex-direction: column; /* Alinha os itens verticalmente */
-  justify-content: center; /* Centraliza o conteúdo dentro da div */
-  align-items: center; /* Centraliza o conteúdo horizontalmente */
-  background-color: #F8F9FA; /* Cor de fundo */
-  border: 2px solid #372D90; /* Borda */
-  width: 500px; /* Largura definida */
-  border-radius: 8px; /* Bordas arredondadas */
-  padding: 20px; /* Espaçamento interno */
-  margin: 20px auto; /* Margem superior e inferior de 20px, centraliza horizontalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F8F9FA; 
+  border: 2px solid #372D90;
+  width: 50%; /* Largura definida como percentual para ser responsiva */
+  max-width: 500px; /* Largura máxima para evitar esticar demais em telas grandes */
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  box-sizing: border-box; /* Garante que padding e borda não aumentem o tamanho do box */
+  text-decoration: none; 
 }
 
+/* Efeito de hover */
+.containerInfo:hover {
+  background-color:#969799; /* Cor de fundo ao passar o mouse */
+}
 
 .containerInfo h2 {
-  color: #372D90; /* Cor do título */
-  margin-bottom: 10px; /* Espaço abaixo do título */
+  color: #372D90;
+  margin-bottom: 10px;
 }
 
 .containerInfo p {
-  color: #333333; /* Cor do texto */
-  font-size: 16px; /* Tamanho da fonte */
+  color: #333333;
+  font-size: 16px;
 }
-    
+
+
+@media (max-width: 768px) {
+  .containerInfo {
+    width: 90%; 
+    padding: 15px; 
+  }
+
+  .containerInfo p {
+    font-size: 14px; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .containerInfo {
+    width: 100%; 
+    padding: 10px;
+  }
+
+  .containerInfo h2 {
+    font-size: 18px;
+  }
+
+  .containerInfo p {
+    font-size: 13px; 
+  }
+}
 </style>

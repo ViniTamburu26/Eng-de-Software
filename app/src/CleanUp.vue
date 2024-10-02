@@ -3,7 +3,7 @@
 </template>
 
 <style>
-#app {
+#CleanUp {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 

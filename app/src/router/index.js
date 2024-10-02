@@ -4,10 +4,20 @@ import ServicoView from '../views/ServicoView.vue';
 import AreaView from '@/views/AreaView.vue';
 import DataView from '@/views/DataView.vue';
 import InfoView from '@/views/InfoView.vue';
+import Optionview from '@/views/Optionview.vue';
+import SolicitacaoPrestadorView from '@/views/SolicitacaoPrestadorView.vue';
+
 
 const routes = [
+
   {
     path: '/',
+    name: 'option',
+    component: Optionview
+  },
+
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
   },
@@ -33,6 +43,15 @@ const routes = [
     name: 'info',
     component: InfoView
   },
+
+  {
+    path: '/solicitacaoPrestador', // Certifique-se de que a rota está correta
+    name: 'solicitacaoPrestador',
+    component: SolicitacaoPrestadorView
+  },
+
+  
+
 
 ];
 
