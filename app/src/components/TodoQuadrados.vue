@@ -1,6 +1,5 @@
 <template>
   <div id="main-content">
-    <TodoAgenda/>
 
     <div class="section-title">
       <h2>Serviços</h2>
@@ -31,13 +30,7 @@
 </template>
 
 <script>
-import TodoAgenda from './TodoAgenda.vue';
 
-export default {
-  components: {
-    TodoAgenda
-  }
-};
 </script>
 
 <style>
@@ -50,14 +43,19 @@ export default {
 
 /* Novo estilo para o título da seção */
 .section-title {
+  
   margin-bottom: 20px; /* Espaçamento abaixo do título */
   text-align: left;
   font-weight: bold; /* Adiciona negrito ao texto */
   color: #000000;
+  margin-left: 233px;
+  margin-top: 150px;
+  font-size: 30px;
 }
 
 /* Estilo para o contêiner dos quadrados */
 .squares-container {
+  margin-left: 233px;
   display: flex;
   justify-content: space-between; /* Espaçamento entre quadrados */
   flex-wrap: wrap; /* Quebra de linha quando necessário */

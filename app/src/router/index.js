@@ -4,16 +4,32 @@ import ServicoView from '../views/ServicoView.vue';
 import AreaView from '@/views/AreaView.vue';
 import DataView from '@/views/DataView.vue';
 import InfoView from '@/views/InfoView.vue';
-import Optionview from '@/views/Optionview.vue';
+import TelaInicialView from '@/views/TelaInicialView.vue';
+import AfiliarView from '@/views/AfiliarView.vue';
 import SolicitacaoPrestadorView from '@/views/SolicitacaoPrestadorView.vue';
+import AutenticarView from '@/views/AutenticarView.vue';
+import HomePrestadorView from '@/views/HomePrestadorView.vue';
+
 
 
 const routes = [
 
   {
     path: '/',
-    name: 'option',
-    component: Optionview
+    name: 'telaInicial',
+    component: TelaInicialView
+  },
+
+  {
+    path: '/afiliar',
+    name: 'afiliar',
+    component: AfiliarView
+  },
+
+  {
+    path: '/autenticar',
+    name: 'autenticar',
+    component: AutenticarView
   },
 
   {
@@ -50,8 +66,12 @@ const routes = [
     component: SolicitacaoPrestadorView
   },
 
-  
-
+  {
+    path: '/HomePrestador', // Define o parâmetro :id
+    name: 'HomePrestador',
+    component: HomePrestadorView,
+    props: true // Permite que o parâmetro seja passado como propriedade
+}
 
 ];
 
