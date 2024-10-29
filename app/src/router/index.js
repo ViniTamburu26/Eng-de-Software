@@ -9,6 +9,8 @@ import AfiliarView from '@/views/AfiliarView.vue';
 import SolicitacaoPrestadorView from '@/views/SolicitacaoPrestadorView.vue';
 import AutenticarView from '@/views/AutenticarView.vue';
 import HomePrestadorView from '@/views/HomePrestadorView.vue';
+import TodoLogin from '@/components/TodoLogin.vue';
+import TodoRegistrar from '@/components/TodoRegistrar.vue';
 
 
 
@@ -64,6 +66,18 @@ const routes = [
     path: '/solicitacaoPrestador', // Certifique-se de que a rota está correta
     name: 'solicitacaoPrestador',
     component: SolicitacaoPrestadorView
+  },
+
+  {
+    path: '/login',
+    name: 'TodoLogin',
+    component: TodoLogin
+  },
+
+  {
+    path: '/registrar',
+    name: 'registrar',
+    component: TodoRegistrar
   },
 
   {

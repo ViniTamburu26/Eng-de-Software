@@ -17,7 +17,7 @@
         <!-- Navegação do usuário à direita -->
         <div class="user_menu">
             <router-link to="/login">Login</router-link>
-            <router-link to="/cadastrar">Cadastrar</router-link>
+            <router-link to="/Registrar">Cadastrar</router-link>
         </div>
     </header>
 
@@ -44,7 +44,6 @@ export default {
     ImageService,
   }
 };
-
 </script>
 
 <style>
