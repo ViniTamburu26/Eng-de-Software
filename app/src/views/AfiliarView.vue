@@ -17,7 +17,7 @@
         <!-- Navegação do usuário à direita -->
         <div class="user_menu">
             <router-link to="/login">Login</router-link>
-            <router-link to="/cadastrar">Cadastrar</router-link>
+            <router-link to="/Registrar">Cadastrar</router-link>
         </div>
     </header>
 
@@ -46,23 +46,6 @@
 </script>
 
 <style>
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #372D90; /* Cor do cabeçalho */
-}
-
-.main_content {
-    background-color: #958AFE; /* Cor de fundo abaixo do cabeçalho */
-    min-height: calc(100vh - 70px); /* Ajuste a altura conforme necessário, dependendo da altura do cabeçalho */
-    padding: 20px; /* Espaçamento interno */
-    display: flex;
-    flex-direction: column; /* Permite que os textos fiquem um embaixo do outro */
-    text-align: left;
-}
-
 .text_and_image {
     display: flex; /* Flexbox para alinhar texto e imagem lado a lado */
     align-items: center; /* Alinha verticalmente o conteúdo no centro */

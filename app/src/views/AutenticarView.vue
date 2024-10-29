@@ -8,9 +8,24 @@
     </header>
 
     <div class="autenticar">
-        <h2 class="prompt_text">Qual seu ID?</h2>
-        <input type="text" class="id_input" v-model="providerId" placeholder="Digite seu ID" />
-        <router-link to="/HomePrestador" class="continue_button" @click="storeProviderId">Continuar</router-link>
+        <h2 class="prompt_text">Qual o seu email?</h2>
+        <input type="text" class="id_input" v-model="providerId" placeholder="Digite seu email" />
+
+        <button v-if="!emailExists" class="continue_button" @click="checkEmail">Continuar</button>
+
+        <div v-if="emailExists">
+            <h2 class="prompt_text">Digite sua senha:</h2>
+            <input type="password" class="id_input" v-model="password" placeholder="Digite sua senha" />
+        </div>
+
+        <button v-if="emailExists" class="continue_button" @click="handleLogin">Login</button>
+
+        <p v-if="error" class="error_message">{{ error }}</p>
+
+        <p v-if="showRegisterPrompt" class="register_prompt">
+            Não possui uma conta? 
+            <router-link to="/registrar">Cadastre-se aqui</router-link>
+        </p>
     </div>
 </template>
 
@@ -18,13 +33,73 @@
 export default {
     data() {
         return {
-            providerId: ''
+            providerId: '',
+            password: '',
+            emailExists: false,
+            showRegisterPrompt: false,
+            error: null,
+            providerName: '',
+            userId: null // Armazena o userId
         };
     },
     methods: {
-        storeProviderId() {
-            // Armazenar o ID do prestador em localStorage
-            localStorage.setItem('providerId', this.providerId);
+        async checkEmail() {
+            this.error = null;
+            this.showRegisterPrompt = false;
+
+            if (!this.providerId) {
+                this.error = "Por favor, insira um email.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/check/checkEmail`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: this.providerId })
+                });
+                const data = await response.json();
+
+                if (data.exists) {
+                    this.emailExists = true;
+                    this.providerName = data.name;
+                } else {
+                    this.error = "Este email não está cadastrado.";
+                    this.showRegisterPrompt = true;
+                }
+            } catch (err) {
+                console.error("Erro ao verificar email:", err);
+                this.error = "Ocorreu um erro ao verificar o email.";
+            }
+        },
+
+        async handleLogin() {
+            this.error = null;
+
+            if (!this.password) {
+                this.error = "Por favor, insira uma senha.";
+                return;
+            }
+
+            try {
+                // Envia o email e senha para o backend para autenticação
+                const response = await fetch(`http://localhost:3000/check/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: this.providerId, password: this.password })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    this.userId = data.userId; // Armazena o userId
+                    this.$router.push(`/HomePrestador?userId=${this.userId}`);
+                } else {
+                    this.error = data.message;
+                }
+            } catch (err) {
+                this.error = "Ocorreu um erro ao fazer login.";
+                console.error("Erro ao fazer login:", err);
+            }
         }
     }
 };
@@ -67,5 +142,21 @@ export default {
 
 .continue_button:hover {
     background-color: #0073e6; 
+}
+
+.error_message {
+    color: red; 
+    margin-top: 10px; 
+}
+
+.register_prompt {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #000;
+}
+
+.register_prompt a {
+    color: #372D90;
+    text-decoration: underline;
 }
 </style>
