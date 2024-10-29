@@ -33,9 +33,9 @@
                 <ul class="services_list">
                     <li v-for="service in services" :key="service.id">
                         <span>{{ service.name }}</span>
+                        <button @click="removeService(service.id)" class="remove_button">Remover</button>
                     </li>
                 </ul>
-                <button @click="removeService(service.id)" class="remove_button">Remover</button>
             </section>
 
             <section class="availability">
