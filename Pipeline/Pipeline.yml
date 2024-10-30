@@ -1,0 +1,95 @@
+# .github/workflows/ci-cd-pipeline.yml
+
+name: CI/CD Pipeline
+
+# Gatilhos que acionam o pipeline
+on:
+  push:
+    branches:
+      - main  # Aciona em pushes na branch principal
+  pull_request:
+    branches:
+      - main  # Aciona em pull requests para a branch principal
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # Especifica o ambiente de execução
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Faz o checkout do repositório
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Define a versão do Node.js
+
+      - name: Install frontend dependencies
+        run: npm install  # Instala dependências do frontend
+
+      - name: Run frontend tests
+        run: npm run test  # Executa os testes do frontend
+
+      - name: Build frontend application
+        run: npm run build  # Constrói a aplicação frontend
+
+  backend-integration:
+    runs-on: ubuntu-latest  # Ambiente de execução para o backend
+    needs: build-and-test  # Este job depende da conclusão do job anterior
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Faz o checkout do repositório
+
+      - name: Install backend dependencies
+        run: cd backend && npm install  # Instala dependências do backend
+
+      - name: Run backend tests
+        run: cd backend && npm run test  # Executa os testes do backend
+
+      - name: Start backend service
+        run: cd backend && npm start &  # Inicia o serviço do backend em segundo plano
+
+  integration-tests:
+    runs-on: ubuntu-latest  # Ambiente de execução para testes de integração
+    needs: backend-integration  # Este job depende da conclusão do job anterior
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Faz o checkout do repositório
+
+      - name: Install integration testing tools
+        run: npm install -g cypress  # Instala Cypress para testes de integração
+
+      - name: Run integration tests
+        run: cypress run  # Executa os testes de integração com Cypress
+
+  pre-production:
+    runs-on: ubuntu-latest  # Ambiente de execução para pré-produção
+    needs: integration-tests  # Este job depende da conclusão do job anterior
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Faz o checkout do repositório
+
+      - name: Deploy to pre-production
+        run: |
+          firebase deploy --project your-preprod-firebase-project-id --token ${{ secrets.FIREBASE_TOKEN }}
+          # Realiza o deploy no ambiente de pré-produção
+
+  production-deploy:
+    runs-on: ubuntu-latest  # Ambiente de execução para produção
+    needs: pre-production  # Este job depende da conclusão do job anterior
+    if: github.ref == 'refs/heads/main'  # Executa apenas se o push for na branch principal
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Faz o checkout do repositório
+
+      - name: Deploy to production
+        run: |
+          firebase deploy --project your-production-firebase-project-id --token ${{ secrets.FIREBASE_TOKEN }}
+          # Realiza o deploy no ambiente de produção
+
+      - name: Notify deployment success
+        run: echo "Deployment to production was successful!"  # Notifica sobre o sucesso do deploy
