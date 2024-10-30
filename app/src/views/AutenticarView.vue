@@ -23,7 +23,7 @@
         <p v-if="error" class="error_message">{{ error }}</p>
 
         <p v-if="showRegisterPrompt" class="register_prompt">
-            Não possui uma conta? 
+            Não possui uma conta?
             <router-link to="/registrar">Cadastre-se aqui</router-link>
         </p>
     </div>
@@ -108,45 +108,45 @@ export default {
 <style>
 .autenticar {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    height: calc(60vh - 60px); 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(60vh - 60px);
 }
 
 .prompt_text {
-    font-size: 24px; 
-    color: #000000; 
+    font-size: 24px;
+    color: #000000;
     margin-bottom: 20px;
 }
 
 .id_input {
-    width: 300px; 
-    padding: 10px; 
+    width: 300px;
+    padding: 10px;
     border: 1px solid #372D90;
-    border-radius: 5px; 
-    margin-bottom: 20px; 
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .continue_button {
-    background-color: #372D90; 
-    color: #FFFFFF; 
-    font-size: 20px; 
+    background-color: #372D90;
+    color: #FFFFFF;
+    font-size: 20px;
     font-weight: bold;
-    padding: 10px 20px; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    width: 300px; 
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 300px;
     text-align: center;
 }
 
 .continue_button:hover {
-    background-color: #0073e6; 
+    background-color: #0073e6;
 }
 
 .error_message {
-    color: red; 
-    margin-top: 10px; 
+    color: red;
+    margin-top: 10px;
 }
 
 .register_prompt {
@@ -159,4 +159,49 @@ export default {
     color: #372D90;
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+
+.recArea,
+.recValor {
+  width: 90%;
+  padding: 15px;
+}
+
+.navigation-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-left,
+.button-right {
+  width: 100%;
+  margin-bottom: 10px;
+}
+}
+
+
+@media (max-width: 480px) {
+
+.recArea,
+.recValor {
+  width: 100%;
+  padding: 10px;
+}
+
+.input-area {
+  width: 100%;
+  font-size: 14px;
+}
+
+.button-left,
+.button-right {
+  font-size: 16px;
+}
+
+.title {
+  font-size: 18px;
+}
+}
+
 </style>

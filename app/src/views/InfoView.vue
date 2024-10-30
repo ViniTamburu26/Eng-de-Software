@@ -1,6 +1,6 @@
 <template>
-    <TodoHeader/>
-    <TodoInfo/>
+  <TodoHeader />
+  <TodoInfo />
 
 </template>
 
@@ -18,7 +18,4 @@ export default {
 }
 </script>
 
-<style>
-
-
-</style>
+<style></style>

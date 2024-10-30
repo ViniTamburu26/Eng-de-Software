@@ -57,7 +57,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Estilos para o login */
 .login-container {
   display: flex;
@@ -66,7 +65,8 @@ export default {
   justify-content: center;
   padding: 20px;
   max-width: 400px;
-  margin: 20px auto; /* Espaçamento superior para o layout */
+  margin: 20px auto;
+  /* Espaçamento superior para o layout */
   border: 1px solid #372D90;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -114,4 +114,49 @@ export default {
   margin-top: 10px;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+
+.recArea,
+.recValor {
+  width: 90%;
+  padding: 15px;
+}
+
+.navigation-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-left,
+.button-right {
+  width: 100%;
+  margin-bottom: 10px;
+}
+}
+
+
+@media (max-width: 480px) {
+
+.recArea,
+.recValor {
+  width: 100%;
+  padding: 10px;
+}
+
+.input-area {
+  width: 100%;
+  font-size: 14px;
+}
+
+.button-left,
+.button-right {
+  font-size: 16px;
+}
+
+.title {
+  font-size: 18px;
+}
+}
+
 </style>

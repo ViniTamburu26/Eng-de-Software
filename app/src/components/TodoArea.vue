@@ -9,15 +9,8 @@
       Qual o tamanho da área a ser feita a limpeza?
     </div>
     <div class="recArea">
-      <input
-        class="input-area"
-        type="number"
-        placeholder="Digite aqui o tamanho da área..."
-        v-model.number="area"
-        @input="validateArea"
-        min="0"
-        step="0.01"
-      />
+      <input class="input-area" type="number" placeholder="Digite aqui o tamanho da área..." v-model.number="area"
+        @input="validateArea" min="0" step="0.01" />
     </div>
   </div>
 
@@ -35,10 +28,7 @@
       <button class="button-left">Voltar</button>
     </router-link>
 
-    <router-link 
-      :to="{ name: 'data', query: { area, tipoLimpeza, valor: estimatedPrice } }"
-      class="button-left"
-    >
+    <router-link :to="{ name: 'data', query: { area, tipoLimpeza, valor: estimatedPrice } }" class="button-left">
       <button class="button-right" :disabled="!isAreaValid">Avançar</button>
     </router-link>
   </div>
@@ -72,7 +62,7 @@ export default {
     },
   },
   watch: {
-    '$route.query.tipoLimpeza': function(newTipo) {
+    '$route.query.tipoLimpeza': function (newTipo) {
       this.tipoLimpeza = newTipo; // Atualiza o tipo de limpeza
       this.validateArea(); // Recalcula o preço ao mudar o tipo de limpeza
     }
@@ -95,7 +85,7 @@ export default {
   flex-direction: column;
   align-items: center;
   max-width: 1000px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .recArea {
@@ -132,7 +122,8 @@ export default {
   font-weight: bold;
   color: #000;
   display: flex;
-  align-items: flex-start; /* Alinhado à esquerda */
+  align-items: flex-start;
+  /* Alinhado à esquerda */
   justify-content: center;
   margin: 20px 0;
   border-radius: 8px;
@@ -157,10 +148,12 @@ export default {
 .navigation-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* Distribui os botões nas extremidades */
+  justify-content: space-between;
+  /* Distribui os botões nas extremidades */
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto; /* Centraliza em telas maiores */
+  margin: 0 auto;
+  /* Centraliza em telas maiores */
   padding: 20px;
 }
 
@@ -184,44 +177,46 @@ export default {
 
 
 @media (max-width: 768px) {
+
   .recArea,
   .recValor {
-    width: 90%; 
+    width: 90%;
     padding: 15px;
   }
 
   .navigation-buttons {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
   }
 
   .button-left,
   .button-right {
-    width: 100%; 
+    width: 100%;
     margin-bottom: 10px;
   }
 }
 
 
 @media (max-width: 480px) {
+
   .recArea,
   .recValor {
-    width: 100%; 
+    width: 100%;
     padding: 10px;
   }
 
   .input-area {
-    width: 100%; 
-    font-size: 14px; 
+    width: 100%;
+    font-size: 14px;
   }
 
   .button-left,
   .button-right {
-    font-size: 16px; 
+    font-size: 16px;
   }
 
   .title {
-    font-size: 18px; 
+    font-size: 18px;
   }
 }
 </style>

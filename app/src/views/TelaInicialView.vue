@@ -31,7 +31,7 @@
         <router-link to="/home" class="btn_contratar">Contratar</router-link>
     </div>
 
-    <ImageService/>
+    <ImageService />
 
 </template>
 
@@ -39,14 +39,14 @@
 import ImageService from '@/components/TodoQuadrados.vue';
 
 export default {
-  name: 'TelaInicialView',
-  components: {
-    ImageService,
-  }
+    name: 'TelaInicialView',
+    components: {
+        ImageService,
+    }
 };
 </script>
 
-<style>
+<style scoped>
 .header {
     display: flex;
     align-items: center;
@@ -59,11 +59,13 @@ export default {
     font-size: 48px;
     color: #000000;
     font-weight: bold;
-    width: 296px; 
+    width: 296px;
     height: 233px;
     text-align: left;
-    margin-top: 150px; /* Margem superior para espaçar do header */
-    margin-left: 250px; /* Alinhamento à esquerda */
+    margin-top: 150px;
+    /* Margem superior para espaçar do header */
+    margin-left: 250px;
+    /* Alinhamento à esquerda */
 }
 
 .nav_menu {
@@ -101,23 +103,71 @@ export default {
 
 /* Estilo para o botão Contratar */
 .button_container {
-    margin-top: 20px; /* Espaçamento entre o slogan e o botão */
+    margin-top: 20px;
+    /* Espaçamento entre o slogan e o botão */
     display: flex;
-    margin-left: 290px; /* Alinhamento à esquerda */
+    margin-left: 290px;
+    /* Alinhamento à esquerda */
 }
 
 .btn_contratar {
-    padding: 15px 30px; 
+    padding: 15px 30px;
     background-color: #372D90;
-    color: #ffffff; 
-    font-weight: bold; 
-    font-size: 18px; 
-    text-decoration: none; 
-    border-radius: 10px; 
-    transition: background-color 0.3s; 
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
 .btn_contratar:hover {
-    background-color: #005bb5; /* Cor do fundo ao passar o mouse */
+    background-color: #005bb5;
+    /* Cor do fundo ao passar o mouse */
 }
+
+@media (max-width: 768px) {
+
+.recArea,
+.recValor {
+  width: 90%;
+  padding: 15px;
+}
+
+.navigation-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-left,
+.button-right {
+  width: 100%;
+  margin-bottom: 10px;
+}
+}
+
+
+@media (max-width: 480px) {
+
+.recArea,
+.recValor {
+  width: 100%;
+  padding: 10px;
+}
+
+.input-area {
+  width: 100%;
+  font-size: 14px;
+}
+
+.button-left,
+.button-right {
+  font-size: 16px;
+}
+
+.title {
+  font-size: 18px;
+}
+}
+
 </style>

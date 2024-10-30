@@ -24,7 +24,8 @@
                 <form @submit.prevent="submitService" class="service_form">
                     <select v-model="selectedService" required>
                         <option disabled value="">Escolha um Serviço</option>
-                        <option v-for="service in availableServices" :key="service" :value="service">{{ service }}</option>
+                        <option v-for="service in availableServices" :key="service" :value="service">{{ service }}
+                        </option>
                     </select>
                     <button type="submit">Adicionar Serviço</button>
                 </form>
@@ -61,19 +62,21 @@
                 <div class="current-availability">
                     <p v-if="availabilityExists">
                         <strong>Disponível em:</strong>
-                        <ul>
-                            <li v-for="(day, index) in availability.days" :key="index">
-                                {{ day }}<span v-if="index < availability.days.length - 1">, </span>
-                            </li>
-                        </ul>
-                        <span>das <strong>{{ availability.startTime }}</strong> às <strong>{{ availability.endTime }}</strong></span>
                     </p>
+                    <ul v-if="availabilityExists">
+                        <li v-for="(day, index) in availability.days" :key="index">
+                            {{ day }}<span v-if="index < availability.days.length - 1">, </span>
+                        </li>
+                    </ul>
+                    <span v-if="availabilityExists">das <strong>{{ availability.startTime }}</strong> às <strong>{{
+                            availability.endTime }}</strong></span>
+                    <button v-if="availabilityExists" @click="removeAvailability" class="remove_button">Remover</button>
                     <p v-else>
                         <strong>Nenhuma disponibilidade definida.</strong> Por favor, adicione horários disponíveis.
                     </p>
                 </div>
-                <button @click="removeAvailability" class="remove_button">Remover</button>
             </section>
+
         </div>
     </div>
 </template>
@@ -97,7 +100,7 @@ export default {
                 startTime: '',
                 endTime: ''
             },
-            providerId: this.$route.query.userId, 
+            providerId: this.$route.query.userId,
             availableServices: [
                 "Limpeza Padrão",
                 "Limpeza Pesada",
@@ -110,7 +113,7 @@ export default {
                 "16:00", "17:00"
             ],
             daysOfWeek: [
-                "Segunda", "Terça", "Quarta", "Quinta", 
+                "Segunda", "Terça", "Quarta", "Quinta",
                 "Sexta", "Sábado", "Domingo"
             ],
             availabilityExists: false
@@ -285,7 +288,8 @@ export default {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Espaçamento entre seções */
+    gap: 20px;
+    /* Espaçamento entre seções */
 }
 
 section {
@@ -300,7 +304,7 @@ section {
 h2 {
     margin-bottom: 10px;
     color: #372D90;
-    font-size: 1.5em; 
+    font-size: 1.5em;
     text-align: left;
 }
 
@@ -378,7 +382,8 @@ li {
 
 .current-availability {
     margin-top: 20px;
-    background: #e9ecef; /* Leve cinza para destacar a seção */
+    background: #e9ecef;
+    /* Leve cinza para destacar a seção */
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -386,34 +391,89 @@ li {
 
 .availability-card {
     padding: 10px;
-    background: #ffffff; /* Branco para os cartões de disponibilidade */
-    border: 1px solid #ddd; /* Borda leve */
+    background: #ffffff;
+    /* Branco para os cartões de disponibilidade */
+    border: 1px solid #ddd;
+    /* Borda leve */
     border-radius: 4px;
 }
 
 .availability-day {
     display: flex;
-    justify-content: space-between; /* Para distribuir o dia e o horário */
+    justify-content: space-between;
+    /* Para distribuir o dia e o horário */
     padding: 8px 0;
-    border-bottom: 1px solid #f1f1f1; /* Borda inferior leve entre os dias */
+    border-bottom: 1px solid #f1f1f1;
+    /* Borda inferior leve entre os dias */
 }
 
 .availability-time {
-    font-weight: normal; /* Menor peso para o horário */
-    color: #777; /* Cinza para o horário */
+    font-weight: normal;
+    /* Menor peso para o horário */
+    color: #777;
+    /* Cinza para o horário */
 }
 
 .availability-day:last-child {
-    border-bottom: none; /* Remove a borda do último item */
+    border-bottom: none;
+    /* Remove a borda do último item */
 }
 
 strong {
-    color: #372D90; /* Cor dos textos em negrito, consistente com o tema */
+    color: #372D90;
+    /* Cor dos textos em negrito, consistente com o tema */
 }
 
 p {
-    margin: 10px 0; /* Margem entre parágrafos */
-    color: #555; /* Cor padrão para parágrafos */
-    font-size: 1em; /* Tamanho padrão para parágrafos */
+    margin: 10px 0;
+    /* Margem entre parágrafos */
+    color: #555;
+    /* Cor padrão para parágrafos */
+    font-size: 1em;
+    /* Tamanho padrão para parágrafos */
+}
+
+@media (max-width: 768px) {
+
+    .recArea,
+    .recValor {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-left,
+    .button-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .recArea,
+    .recValor {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .input-area {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .button-left,
+    .button-right {
+        font-size: 16px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
 }
 </style>

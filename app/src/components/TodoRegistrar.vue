@@ -13,33 +13,10 @@
     <div class="register-container">
       <h2 class="register-title">Cadastrar</h2>
       <form @submit.prevent="handleRegister" class="register-form">
-        <input 
-          type="text" 
-          v-model="name" 
-          placeholder="Nome" 
-          required 
-          class="input-field" 
-        />
-        <input 
-          type="email" 
-          v-model="email" 
-          placeholder="Email" 
-          required 
-          class="input-field" 
-          @input="clearError" 
-        />
-        <input 
-          type="password" 
-          v-model="password" 
-          placeholder="Senha" 
-          required 
-          class="input-field" 
-        />
-        <button 
-          type="submit" 
-          class="submit-button" 
-          :disabled="isLoading"
-        >
+        <input type="text" v-model="name" placeholder="Nome" required class="input-field" />
+        <input type="email" v-model="email" placeholder="Email" required class="input-field" @input="clearError" />
+        <input type="password" v-model="password" placeholder="Senha" required class="input-field" />
+        <button type="submit" class="submit-button" :disabled="isLoading">
           Cadastrar
         </button>
       </form>
@@ -54,7 +31,7 @@ import axios from 'axios'; // Importa Axios para requisições HTTP
 export default {
   data() {
     return {
-      name: "", 
+      name: "",
       email: "",
       password: "",
       error: null,
@@ -76,7 +53,7 @@ export default {
         alert(response.data.message);
 
         // Redireciona ou atualiza o estado do aplicativo após o registro
-        this.$router.push('/'); 
+        this.$router.push('/');
       } catch (err) {
         this.error = err.response.data.message || 'Erro ao registrar'; // Define a mensagem de erro
       } finally {
@@ -93,7 +70,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Estilos para o registro */
 .register-container {
   display: flex;
@@ -102,7 +78,8 @@ export default {
   justify-content: center;
   padding: 20px;
   max-width: 400px;
-  margin: 20px auto; /* Espaçamento superior para o layout */
+  margin: 20px auto;
+  /* Espaçamento superior para o layout */
   border: 1px solid #372D90;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -142,8 +119,10 @@ export default {
 }
 
 .submit-button:disabled {
-  background-color: #cccccc; /* Cor do botão desabilitado */
-  cursor: not-allowed; /* Altera o cursor quando o botão está desabilitado */
+  background-color: #cccccc;
+  /* Cor do botão desabilitado */
+  cursor: not-allowed;
+  /* Altera o cursor quando o botão está desabilitado */
 }
 
 .submit-button:hover:not(:disabled) {
@@ -155,4 +134,49 @@ export default {
   margin-top: 10px;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+
+.recArea,
+.recValor {
+  width: 90%;
+  padding: 15px;
+}
+
+.navigation-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-left,
+.button-right {
+  width: 100%;
+  margin-bottom: 10px;
+}
+}
+
+
+@media (max-width: 480px) {
+
+.recArea,
+.recValor {
+  width: 100%;
+  padding: 10px;
+}
+
+.input-area {
+  width: 100%;
+  font-size: 14px;
+}
+
+.button-left,
+.button-right {
+  font-size: 16px;
+}
+
+.title {
+  font-size: 18px;
+}
+}
+
 </style>

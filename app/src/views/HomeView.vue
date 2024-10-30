@@ -1,7 +1,7 @@
 <template>
-    <TodoHeader/>
-    <ImageService/>
-    <SolicitarForm />
+  <TodoHeader />
+  <ImageService />
+  <SolicitarForm />
 </template>
 
 <script>
@@ -19,7 +19,4 @@ export default {
 }
 </script>
 
-<style>
-
-
-</style>
+<style></style>

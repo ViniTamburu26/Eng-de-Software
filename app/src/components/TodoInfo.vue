@@ -89,14 +89,14 @@ export default {
 
   methods: {
     confirmService() {
-      this.loading = true; 
+      this.loading = true;
       setTimeout(() => {
-        this.loading = false; 
-        this.serviceConfirmed = true; 
+        this.loading = false;
+        this.serviceConfirmed = true;
         alert('Serviço confirmado com sucesso!');
-        
+
         this.$router.push({ name: 'home' }); // Substitua 'home' pelo nome da sua rota inicial
-      }, 3000); 
+      }, 3000);
     }
   }
 };
@@ -120,11 +120,14 @@ export default {
   padding: 20px;
   text-align: center;
   font-family: Arial, sans-serif;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza o conteúdo verticalmente */
-  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  justify-content: center;
+  /* Centraliza o conteúdo verticalmente */
+  align-items: center;
+  /* Centraliza o conteúdo horizontalmente */
 }
 
 .service-box h3 {
@@ -142,7 +145,8 @@ export default {
 
 .icons font-awesome-icon {
   margin: 0 10px;
-  font-size: 24px; /* Aumentar o tamanho dos ícones */
+  font-size: 24px;
+  /* Aumentar o tamanho dos ícones */
 }
 
 /* Lista para exibir Área e Data */
@@ -172,7 +176,8 @@ ul li {
 }
 
 .confirm-button button {
-  background-color: #4CAF50; /* Cor do botão */
+  background-color: #4CAF50;
+  /* Cor do botão */
   color: white;
   padding: 10px 20px;
   font-size: 16px;
@@ -191,6 +196,52 @@ ul li {
 /* Estilo do indicador de carregamento */
 .loading-indicator {
   margin-top: 20px;
-  font-size: 24px; /* Tamanho do ícone de carregamento */
+  font-size: 24px;
+  /* Tamanho do ícone de carregamento */
 }
+
+@media (max-width: 768px) {
+
+.recArea,
+.recValor {
+  width: 90%;
+  padding: 15px;
+}
+
+.navigation-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-left,
+.button-right {
+  width: 100%;
+  margin-bottom: 10px;
+}
+}
+
+
+@media (max-width: 480px) {
+
+.recArea,
+.recValor {
+  width: 100%;
+  padding: 10px;
+}
+
+.input-area {
+  width: 100%;
+  font-size: 14px;
+}
+
+.button-left,
+.button-right {
+  font-size: 16px;
+}
+
+.title {
+  font-size: 18px;
+}
+}
+
 </style>

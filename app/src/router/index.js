@@ -11,6 +11,7 @@ import AutenticarView from '@/views/AutenticarView.vue';
 import HomePrestadorView from '@/views/HomePrestadorView.vue';
 import TodoLogin from '@/components/TodoLogin.vue';
 import TodoRegistrar from '@/components/TodoRegistrar.vue';
+import AgendaView from '@/views/AgendaView.vue';
 
 
 
@@ -20,6 +21,12 @@ const routes = [
     path: '/',
     name: 'telaInicial',
     component: TelaInicialView
+  },
+
+  {
+    path: '/agenda',
+    name: 'agenda',
+    component: AgendaView
   },
 
   {
@@ -85,7 +92,7 @@ const routes = [
     name: 'HomePrestador',
     component: HomePrestadorView,
     props: true // Permite que o parâmetro seja passado como propriedade
-}
+  }
 
 ];
 
