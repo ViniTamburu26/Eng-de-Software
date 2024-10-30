@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "CleanUp_front",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
