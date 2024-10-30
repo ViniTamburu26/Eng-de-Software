@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "CleanUp_front",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
