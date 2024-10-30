@@ -7,26 +7,30 @@
         </div>
     </header>
 
-    <div class="autenticar">
-        <h2 class="prompt_text">Qual o seu email?</h2>
-        <input type="text" class="id_input" v-model="providerId" placeholder="Digite seu email" />
+    <div class="main_content">
+        <div class="autenticar">
+            <h2 class="prompt_text">Qual o seu email?</h2>
+            <input type="text" class="id_input" v-model="providerId" placeholder="Digite seu email" />
 
-        <button v-if="!emailExists" class="continue_button" @click="checkEmail">Continuar</button>
+            <button v-if="!emailExists" class="continue_button" @click="checkEmail">Continuar</button>
 
-        <div v-if="emailExists">
-            <h2 class="prompt_text">Digite sua senha:</h2>
-            <input type="password" class="id_input" v-model="password" placeholder="Digite sua senha" />
+            <div v-if="emailExists">
+                <h2 class="prompt_text">Digite sua senha:</h2>
+                <input type="password" class="id_input" v-model="password" placeholder="Digite sua senha" />
+            </div>
+
+            <button v-if="emailExists" class="continue_button" @click="handleLogin">Login</button>
+
+            <p v-if="error" class="error_message">{{ error }}</p>
+
+            <p v-if="showRegisterPrompt" class="register_prompt">
+                Não possui uma conta?
+                <router-link to="/registrar">Cadastre-se aqui</router-link>
+            </p>
         </div>
 
-        <button v-if="emailExists" class="continue_button" @click="handleLogin">Login</button>
-
-        <p v-if="error" class="error_message">{{ error }}</p>
-
-        <p v-if="showRegisterPrompt" class="register_prompt">
-            Não possui uma conta?
-            <router-link to="/registrar">Cadastre-se aqui</router-link>
-        </p>
     </div>
+
 </template>
 
 <script>
@@ -110,8 +114,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: calc(60vh - 60px);
+    margin-top: 150px;
+
 }
 
 .prompt_text {
@@ -162,46 +166,45 @@ export default {
 
 @media (max-width: 768px) {
 
-.recArea,
-.recValor {
-  width: 90%;
-  padding: 15px;
-}
+    .recArea,
+    .recValor {
+        width: 90%;
+        padding: 15px;
+    }
 
-.navigation-buttons {
-  flex-direction: column;
-  align-items: center;
-}
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.button-left,
-.button-right {
-  width: 100%;
-  margin-bottom: 10px;
-}
+    .button-left,
+    .button-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
 
 
 @media (max-width: 480px) {
 
-.recArea,
-.recValor {
-  width: 100%;
-  padding: 10px;
-}
+    .recArea,
+    .recValor {
+        width: 100%;
+        padding: 10px;
+    }
 
-.input-area {
-  width: 100%;
-  font-size: 14px;
-}
+    .input-area {
+        width: 100%;
+        font-size: 14px;
+    }
 
-.button-left,
-.button-right {
-  font-size: 16px;
-}
+    .button-left,
+    .button-right {
+        font-size: 16px;
+    }
 
-.title {
-  font-size: 18px;
+    .title {
+        font-size: 18px;
+    }
 }
-}
-
 </style>

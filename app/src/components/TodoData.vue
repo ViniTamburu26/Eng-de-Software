@@ -1,11 +1,11 @@
 <template>
-  <TodoAgenda />
-
-  <div class="title">
+  <div class="main_content">
+    <TodoAgenda />
+    <div class="title ">
     <h2>Data</h2>
   </div>
 
-  <div class="containerServico">
+  <div class="containerServico ">
     <div class="recArea">Qual a data a ser realizada a limpeza?</div>
     <div class="recArea">
       <input class="input-data" type="date" v-model="selectedDate" />
@@ -29,6 +29,8 @@
       <button class="button-right">Avançar</button>
     </router-link>
   </div>
+  </div>
+
 </template>
 
 <script>
@@ -61,6 +63,13 @@ export default {
 </script>
 
 <style>
+
+.main_content {
+    background-color: #d5dbfc; /* Escolha a cor que preferir */
+    padding: 20px; /* Adiciona algum espaçamento */
+    min-height: calc(100vh - 80px); /* Ajusta a altura mínima para não sobrepor o cabeçalho */
+}
+
 .input-data {
   width: 80%;
   height: 50px;

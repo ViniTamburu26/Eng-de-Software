@@ -21,17 +21,21 @@
         </div>
     </header>
 
-    <!-- Texto abaixo do header -->
-    <div class="slogan">
-        Precisou de Limpeza? <br> Chegamos <br> Até Você!
-    </div>
+    <div class="main_content">
+        <div class="slogan-container">
+            <div class="slogan">
+            Precisou de Limpeza? <br> Chegamos <br> Até Você!
+        </div>
+        <img class="image" src="@/assets/mulherLimpeza.png" alt="mulherLimpeza" />
+        </div>
+        <div class="button_container">
+            <router-link to="/home" class="btn_contratar">Contratar</router-link>
+        </div>
 
-    <!-- Botão Contratar abaixo do slogan -->
-    <div class="button_container">
-        <router-link to="/home" class="btn_contratar">Contratar</router-link>
-    </div>
 
-    <ImageService />
+        <ImageService />
+
+    </div>
 
 </template>
 
@@ -46,7 +50,31 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+
+.slogan-container {
+    display: flex; /* Usa flexbox para alinhar os itens */
+    align-items: center; /* Alinha verticalmente os itens no centro */
+    justify-content: space-between; /* Espaça os itens uniformemente */
+    margin-left: 250px; /* Alinhamento à esquerda */
+}
+
+
+.image {
+    width: 500px; /* Ajuste a largura conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 10px; 
+    margin-right: 900px;
+    margin-top: 80px;
+}
+
+
+.main_content {
+    background-color: #d5dbfc; /* Escolha a cor que preferir */
+    padding: 20px; /* Adiciona algum espaçamento */
+    min-height: calc(100vh - 80px); /* Ajusta a altura mínima para não sobrepor o cabeçalho */
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -63,9 +91,6 @@ export default {
     height: 233px;
     text-align: left;
     margin-top: 150px;
-    /* Margem superior para espaçar do header */
-    margin-left: 250px;
-    /* Alinhamento à esquerda */
 }
 
 .nav_menu {
@@ -128,46 +153,45 @@ export default {
 
 @media (max-width: 768px) {
 
-.recArea,
-.recValor {
-  width: 90%;
-  padding: 15px;
-}
+    .recArea,
+    .recValor {
+        width: 90%;
+        padding: 15px;
+    }
 
-.navigation-buttons {
-  flex-direction: column;
-  align-items: center;
-}
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.button-left,
-.button-right {
-  width: 100%;
-  margin-bottom: 10px;
-}
+    .button-left,
+    .button-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
 
 
 @media (max-width: 480px) {
 
-.recArea,
-.recValor {
-  width: 100%;
-  padding: 10px;
-}
+    .recArea,
+    .recValor {
+        width: 100%;
+        padding: 10px;
+    }
 
-.input-area {
-  width: 100%;
-  font-size: 14px;
-}
+    .input-area {
+        width: 100%;
+        font-size: 14px;
+    }
 
-.button-left,
-.button-right {
-  font-size: 16px;
-}
+    .button-left,
+    .button-right {
+        font-size: 16px;
+    }
 
-.title {
-  font-size: 18px;
+    .title {
+        font-size: 18px;
+    }
 }
-}
-
 </style>

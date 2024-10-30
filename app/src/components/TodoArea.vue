@@ -1,37 +1,42 @@
 <template>
-  <TodoAgenda />
-  <div class="title">
-    <h2>ÁREA</h2>
-  </div>
 
-  <div class="containerServico">
-    <div class="recArea">
-      Qual o tamanho da área a ser feita a limpeza?
+  <div class="main_content">
+    <TodoAgenda />
+    <div class="title">
+      <h2>ÁREA</h2>
     </div>
-    <div class="recArea">
-      <input class="input-area" type="number" placeholder="Digite aqui o tamanho da área..." v-model.number="area"
-        @input="validateArea" min="0" step="0.01" />
-    </div>
-  </div>
 
-  <div class="containerValor">
-    <div class="recValor">
-      <div class="preco-info">
-        <span class="preco-label">Preço Estimado</span>
-        <span class="preco-valor">R$ {{ estimatedPrice.toFixed(2) }}</span>
+    <div class="containerServico">
+      <div class="recArea">
+        Qual o tamanho da área a ser feita a limpeza?
+      </div>
+      <div class="recArea">
+        <input class="input-area" type="number" placeholder="Digite aqui o tamanho da área..." v-model.number="area"
+          @input="validateArea" min="0" step="0.01" />
       </div>
     </div>
+
+    <div class="containerValor">
+      <div class="recValor">
+        <div class="preco-info">
+          <span class="preco-label">Preço Estimado</span>
+          <span class="preco-valor">R$ {{ estimatedPrice.toFixed(2) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="navigation-buttons">
+      <router-link to="/servico" class="button-left">
+        <button class="button-left">Voltar</button>
+      </router-link>
+
+      <router-link :to="{ name: 'data', query: { area, tipoLimpeza, valor: estimatedPrice } }" class="button-left">
+        <button class="button-right" :disabled="!isAreaValid">Avançar</button>
+      </router-link>
+    </div>
+
   </div>
 
-  <div class="navigation-buttons">
-    <router-link to="/servico" class="button-left">
-      <button class="button-left">Voltar</button>
-    </router-link>
-
-    <router-link :to="{ name: 'data', query: { area, tipoLimpeza, valor: estimatedPrice } }" class="button-left">
-      <button class="button-right" :disabled="!isAreaValid">Avançar</button>
-    </router-link>
-  </div>
 </template>
 
 <script>

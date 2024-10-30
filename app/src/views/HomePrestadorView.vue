@@ -241,8 +241,8 @@ export default {
 </script>
 
 <style scoped>
+
 .provider_dashboard {
-    padding: 20px;
     background-color: #f4f4f4;
     font-family: 'Arial', sans-serif;
 }
@@ -260,7 +260,7 @@ export default {
 
 .dashboard_header {
     background-color: #372D90;
-    color: #fff;
+    color: #d5dbfc;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
@@ -274,7 +274,7 @@ export default {
 
 .dashboard_nav a {
     margin: 0 15px;
-    color: #E3E0E0;
+    color: #d5dbfc;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
@@ -293,7 +293,7 @@ export default {
 }
 
 section {
-    background: white;
+    background: #d5dbfc;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -321,17 +321,17 @@ form {
 
 .service_form,
 .availability_form {
-    border: 1px solid #ddd;
+    border: 1px solid #d5dbfc;
     border-radius: 4px;
     padding: 15px;
-    background: #f9f9f9;
+    background: #d5dbfc;
     margin-bottom: 15px;
 }
 
 select {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #d5dbfc;
     border-radius: 4px;
 }
 

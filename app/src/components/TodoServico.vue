@@ -1,5 +1,6 @@
 <template>
-  <TodoAgenda />
+  <div class="main_content">
+    <TodoAgenda />
   <div class="title">
     <h2>Serviços</h2>
   </div>
@@ -19,6 +20,10 @@
         <font-awesome-icon :icon="['fas', 'broom']" /></router-link>
     </div>
   </div>
+
+
+  </div>
+  
 </template>
 
 <script>

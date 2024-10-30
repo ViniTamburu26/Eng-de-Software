@@ -1,7 +1,10 @@
 <template>
   <TodoHeader />
-  <ImageService />
-  <SolicitarForm />
+  <div class="main_content">
+    <ImageService />
+    <SolicitarForm />
+  </div>
+
 </template>
 
 <script>

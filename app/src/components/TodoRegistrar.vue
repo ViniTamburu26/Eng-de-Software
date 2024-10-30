@@ -9,20 +9,23 @@
       </div>
     </header>
 
-    <!-- Container de Registro -->
-    <div class="register-container">
-      <h2 class="register-title">Cadastrar</h2>
-      <form @submit.prevent="handleRegister" class="register-form">
-        <input type="text" v-model="name" placeholder="Nome" required class="input-field" />
-        <input type="email" v-model="email" placeholder="Email" required class="input-field" @input="clearError" />
-        <input type="password" v-model="password" placeholder="Senha" required class="input-field" />
-        <button type="submit" class="submit-button" :disabled="isLoading">
-          Cadastrar
-        </button>
-      </form>
-      <p v-if="error" class="error-message">{{ error }}</p>
+    <div class="main_content">
+      <div class="register-container">
+        <h2 class="register-title">Cadastrar</h2>
+        <form @submit.prevent="handleRegister" class="register-form">
+          <input type="text" v-model="name" placeholder="Nome" required class="input-field" />
+          <input type="email" v-model="email" placeholder="Email" required class="input-field" @input="clearError" />
+          <input type="password" v-model="password" placeholder="Senha" required class="input-field" />
+          <button type="submit" class="submit-button" :disabled="isLoading">
+            Cadastrar
+          </button>
+        </form>
+        <p v-if="error" class="error-message">{{ error }}</p>
+      </div>
     </div>
+
   </div>
+  <!-- Container de Registro -->
 </template>
 
 <script>
@@ -137,46 +140,45 @@ export default {
 
 @media (max-width: 768px) {
 
-.recArea,
-.recValor {
-  width: 90%;
-  padding: 15px;
-}
+  .recArea,
+  .recValor {
+    width: 90%;
+    padding: 15px;
+  }
 
-.navigation-buttons {
-  flex-direction: column;
-  align-items: center;
-}
+  .navigation-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.button-left,
-.button-right {
-  width: 100%;
-  margin-bottom: 10px;
-}
+  .button-left,
+  .button-right {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 
 @media (max-width: 480px) {
 
-.recArea,
-.recValor {
-  width: 100%;
-  padding: 10px;
-}
+  .recArea,
+  .recValor {
+    width: 100%;
+    padding: 10px;
+  }
 
-.input-area {
-  width: 100%;
-  font-size: 14px;
-}
+  .input-area {
+    width: 100%;
+    font-size: 14px;
+  }
 
-.button-left,
-.button-right {
-  font-size: 16px;
-}
+  .button-left,
+  .button-right {
+    font-size: 16px;
+  }
 
-.title {
-  font-size: 18px;
+  .title {
+    font-size: 18px;
+  }
 }
-}
-
 </style>

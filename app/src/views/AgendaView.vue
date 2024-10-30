@@ -1,20 +1,22 @@
 <template>
     <div class="solicitacoes_dashboard">
         <header class="flex header">
-            <div class="header_content">
-                <router-link to="/HomePrestador">
-                    <img class="logo" src="@/assets/logo.png" alt="Logo CleanUP" />
-                </router-link>
-                <nav class="dashboard_nav">
-                    <router-link to="/perfil">Meu Perfil</router-link>
-                    <router-link to="/servicos">Serviços Ofertados</router-link>
-                    <router-link to="/disponibilidade">Disponibilidade</router-link>
-                    <router-link to="/agenda">Agenda</router-link>
-                </nav>
-            </div>
-        </header>
+    <div class="header_content">
+        <router-link to="/HomePrestador">
+            <img class="logo" src="@/assets/logo.png" alt="Logo CleanUP" />
+        </router-link>
+        <nav class="dashboard_nav">
+            <router-link to="/perfil">Meu Perfil</router-link>
+            <router-link to="/servicos">Serviços Ofertados</router-link>
+            <router-link to="/disponibilidade">Disponibilidade</router-link>
+            <router-link to="/agenda">Agenda</router-link>
+        </nav>
+        <router-link to="/" class="logout_link">Sair</router-link> <!-- Link para Sair -->
+    </div>
+</header>
 
-        <main class="solicitacoes">
+
+        <main class="solicitacoes main_content">
             <!-- Seção de Solicitações Disponíveis -->
             <h2>Solicitações Disponíveis</h2>
             <div class="solicitacoes-container">
@@ -32,13 +34,10 @@
                                         <strong>Área:</strong> {{ solicitacao.area }}
                                     </p>
                                     <p class="solicitacao-data">
-                                        <strong>Data:</strong> {{ new Date(solicitacao.data).toLocaleDateString() }}
+                                        <strong>Data:</strong> {{ new Date(solicitacao.data).getTime() }}
                                     </p>
                                     <p class="solicitacao-id">
                                         <strong>ID Cliente:</strong> {{ solicitacao.idCliente }}
-                                    </p>
-                                    <p class="solicitacao-id">
-                                        <strong>ID Prestador:</strong> {{ solicitacao.idPrestador }}
                                     </p>
                                     <p class="solicitacao-id">
                                         <strong>ID Serviço:</strong> {{ solicitacao.idServico }}
@@ -78,13 +77,10 @@
                                         <strong>Área:</strong> {{ solicitacao.area }}
                                     </p>
                                     <p class="solicitacao-data">
-                                        <strong>Data:</strong> {{ new Date(solicitacao.data).toLocaleDateString() }}
+                                        <strong>Data:</strong> {{ new Date(solicitacao.data).getTime() }}
                                     </p>
                                     <p class="solicitacao-id">
                                         <strong>ID Cliente:</strong> {{ solicitacao.idCliente }}
-                                    </p>
-                                    <p class="solicitacao-id">
-                                        <strong>ID Prestador:</strong> {{ solicitacao.idPrestador }}
                                     </p>
                                     <p class="solicitacao-id">
                                         <strong>ID Serviço:</strong> {{ solicitacao.idServico }}
@@ -193,7 +189,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .provider_dashboard {
     padding: 20px;
     background-color: #f4f4f4;
@@ -213,7 +209,7 @@ export default {
 
 .dashboard_header {
     background-color: #372D90;
-    color: #fff;
+    color: #d5dbfc;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
@@ -244,7 +240,7 @@ export default {
     /* Coloca os itens em coluna */
     align-items: center;
     /* Centraliza todos os itens horizontalmente */
-    margin: 20px 0;
+    
 }
 
 h2 {
@@ -256,7 +252,7 @@ h2 {
 }
 
 .solicitacoes-container {
-    background-color: #fff;
+    background-color: #d5dbfc;
     color: #372D90;
 }
 
@@ -272,11 +268,8 @@ h2 {
 
 .solicitacao {
     flex: 1 1 300px;
-    /* Define uma largura mínima de 300px para cada item */
-    max-width: 300px;
-    /* Limita a largura máxima */
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #f2f1fb;
+    border: 1px solid #000002;
     padding: 20px;
     border-radius: 8px;
     transition: transform 0.2s;
@@ -398,6 +391,25 @@ h2 {
     background-color: #c82333;
     /* Tom mais escuro de vermelho ao passar o mouse */
 }
+
+.header_content {
+    display: flex;
+    justify-content: space-between; /* Distribui espaço entre os itens */
+    align-items: center; /* Alinha verticalmente os itens */
+}
+
+.dashboard_nav {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os links do menu */
+}
+
+.logout_link {
+    margin-left: auto; /* Empurra o link "Sair" para a direita */
+    color: rgb(253, 247, 247); /* Cor do texto (opcional) */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: bold;
+}
+
 
 @media (max-width: 768px) {
 

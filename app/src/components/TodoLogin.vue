@@ -10,14 +10,16 @@
     </header>
 
     <!-- Login Container -->
-    <div class="login-container">
-      <h2 class="login-title">Login</h2>
-      <form @submit.prevent="handleLogin" class="login-form">
-        <input type="email" v-model="email" placeholder="Email" required class="input-field" />
-        <input type="password" v-model="password" placeholder="Senha" required class="input-field" />
-        <button type="submit" class="submit-button">Entrar</button>
-      </form>
-      <p v-if="error" class="error-message">{{ error }}</p>
+    <div class="main_content">
+      <div class="login-container">
+        <h2 class="login-title">Login</h2>
+        <form @submit.prevent="handleLogin" class="login-form">
+          <input type="email" v-model="email" placeholder="Email" required class="input-field" />
+          <input type="password" v-model="password" placeholder="Senha" required class="input-field" />
+          <button type="submit" class="submit-button">Entrar</button>
+        </form>
+        <p v-if="error" class="error-message">{{ error }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -117,46 +119,45 @@ export default {
 
 @media (max-width: 768px) {
 
-.recArea,
-.recValor {
-  width: 90%;
-  padding: 15px;
-}
+  .recArea,
+  .recValor {
+    width: 90%;
+    padding: 15px;
+  }
 
-.navigation-buttons {
-  flex-direction: column;
-  align-items: center;
-}
+  .navigation-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.button-left,
-.button-right {
-  width: 100%;
-  margin-bottom: 10px;
-}
+  .button-left,
+  .button-right {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 
 @media (max-width: 480px) {
 
-.recArea,
-.recValor {
-  width: 100%;
-  padding: 10px;
-}
+  .recArea,
+  .recValor {
+    width: 100%;
+    padding: 10px;
+  }
 
-.input-area {
-  width: 100%;
-  font-size: 14px;
-}
+  .input-area {
+    width: 100%;
+    font-size: 14px;
+  }
 
-.button-left,
-.button-right {
-  font-size: 16px;
-}
+  .button-left,
+  .button-right {
+    font-size: 16px;
+  }
 
-.title {
-  font-size: 18px;
+  .title {
+    font-size: 18px;
+  }
 }
-}
-
 </style>

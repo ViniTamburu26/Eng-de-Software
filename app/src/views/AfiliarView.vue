@@ -48,6 +48,13 @@
 </script>
 
 <style scoped>
+
+.main_content {
+    background-color: #d5dbfc; /* Escolha a cor que preferir */
+    padding: 20px; /* Adiciona algum espaçamento */
+    min-height: calc(100vh - 80px); /* Ajusta a altura mínima para não sobrepor o cabeçalho */
+}
+
 .text_and_image {
     display: flex;
     align-items: center;
@@ -82,6 +89,7 @@
 .side_image {
     width: 750px;
     height: auto;
+    border-radius: 20px;
 }
 
 .start_button {

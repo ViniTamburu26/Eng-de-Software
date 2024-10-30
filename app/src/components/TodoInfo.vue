@@ -1,5 +1,6 @@
 <template>
-  <TodoAgenda />
+  <div class="main_content">
+    <TodoAgenda />
 
   <div class="title">
     <h2>Informações</h2>
@@ -37,6 +38,8 @@
       <button class="button-left">Voltar</button>
     </router-link>
   </div>
+  </div>
+  
 </template>
 
 <script>

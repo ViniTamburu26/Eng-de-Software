@@ -7,23 +7,23 @@
 
     <div class="squares-container">
       <div class="service-item">
-        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPadrao.jpg') + ')' }"></div>
+        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPadrao.png') + ')' }"></div>
         <p class="description">Limpeza Padrão</p>
       </div>
 
       <div class="service-item">
-        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPesada.jpg') + ')' }"></div>
+        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPesada.png') + ')' }"></div>
         <p class="description">Limpeza Pesada</p>
       </div>
 
       <div class="service-item">
-        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPosAluguel.jpg') + ')' }">
+        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPosAluguel.png') + ')' }">
         </div>
         <p class="description">Limpeza Pós Aluguel</p>
       </div>
 
       <div class="service-item">
-        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPosReforma.jpg') + ')' }">
+        <div class="square" :style="{ backgroundImage: 'url(' + require('@/assets/limpezaPosReforma.png') + ')' }">
         </div>
         <p class="description">Limpeza Pós Reforma</p>
       </div>
@@ -41,7 +41,7 @@
   /* Distância do cabeçalho */
   padding: 20px;
   /* Espaçamento interno */
-  background-color: #ffffff;
+  background-color: #d5dbfc;
   /* Cor de fundo para o conteúdo */
   min-height: calc(100vh - 250px);
   /* Altura mínima para ocupar o restante da tela */

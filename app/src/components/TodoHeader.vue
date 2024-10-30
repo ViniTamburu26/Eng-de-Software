@@ -6,8 +6,8 @@
       </router-link>
     </div>
     <div class="header-right">
-      <button @click="toggleSidebar" class="sidebar-toggle">
-        {{ isSidebarActive ? '✖' : '☰' }}
+      <button @click="toggleSidebar" class="sidebar-toggle" v-if="!isSidebarActive">
+        ☰
       </button>
       <div class="headerText">
         <font-awesome-icon :icon="['fas', 'location-dot']" />
@@ -18,11 +18,14 @@
 
   <!-- Barra lateral -->
   <div class="sidebar" :class="{ open: isSidebarActive }" id="sidebar">
+    <button @click="toggleSidebar" class="close-sidebar" v-if="isSidebarActive">
+      ✖
+    </button>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Serviços</a></li>
-      <li><a href="#about">Sobre</a></li>
-      <li><router-link to="/">Contato</router-link></li>
+      <li><a href="#home"><font-awesome-icon :icon="['fas', 'home']" /> Home</a></li>
+      <li><a href="#services"><font-awesome-icon :icon="['fas', 'tools']" /> Serviços</a></li>
+      <li><a href="#about"><font-awesome-icon :icon="['fas', 'info-circle']" /> Sobre</a></li>
+      <li><a href="/"><font-awesome-icon :icon="['fas', 'sign-out-alt']" /> Sair</a></li>
     </ul>
   </div>
 </template>
@@ -82,7 +85,6 @@ header {
   padding-left: 8px;
 }
 
-
 .sidebar-toggle {
   background-color: transparent;
   border: none;
@@ -98,21 +100,31 @@ header {
 .sidebar {
   width: 130px;
   background-color: #372D90;
-  position: fixed;
-  left: -200px;
-  /* Inicialmente oculta */
-  top: 193px;
-  /* Alinhado logo abaixo do cabeçalho */
-  height: calc(100% - 120px);
-  /* Altura ajustada para não sobrepor o cabeçalho */
-  transition: left 0.3s ease;
-  z-index: 999;
+  position: fixed; /* Mantém a sidebar fixa */
+  left: -200px; /* Inicialmente oculta */
+  top: 0; /* Alinhado ao topo da tela */
+  height: 100%; /* A altura é 100% da janela */
+  transition: left 0.3s ease; /* Transição suave ao abrir/fechar */
+  z-index: 999; /* Garante que a sidebar esteja na frente */
+  padding-top: 10px; /* Espaçamento superior */
 }
 
 .sidebar.open {
-  left: 0;
+  left: 0; /* Exibe a sidebar quando aberta */
 }
 
+.close-sidebar {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin: 10px;
+  display: block; /* Para ocupar uma linha inteira */
+}
+
+/* Estilo da lista */
 .sidebar ul {
   list-style: none;
   padding-left: 0;
@@ -136,7 +148,7 @@ header {
   border-radius: 5px;
 }
 
-
+/* Estilos de mídia */
 @media (max-width: 1024px) {
   .logo {
     width: 180px;
@@ -168,7 +180,6 @@ header {
 
   .sidebar {
     width: 130px;
-    top: 180px;
   }
 }
 
